@@ -43,10 +43,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			case *linebot.TextMessage:
 				//var txt = Send(message.Text);
 				//rand.Seed(99)
-				answers := []string{"彥達好帥","彥達好棒","彥達好有錢","彥達開跑車","彥達住豪宅","彥達100分","彥達高材生","彥達金城武","彥達劉德華"}
-				//if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK!"+txt+"  "+event.Source.UserID+"   "+event.ReplyToken)).Do(); err != nil {
-				//	log.Print(err)
-				//}
+				answers :=[]string{"咿喔","咿~喔~","咿喔咿喔喔","咿喔~咿喔","咿咿喔喔~","咿~喔咿~喔","咿喔喔~~","喔~咿喔~~","咿喔咿喔咿喔"}
+				
 				var txt = message.Text+","+answers[rand.Intn(len(answers))]
 				if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(txt)).Do(); err != nil {
 					log.Print(err)
@@ -54,16 +52,6 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 				
 			}
 		}
-		if event.Type == linebot.EventTypeFollow {
-			var text = "Hi!歡迎使用魔物獵人LINE@BOT\n"+
-				"指令:\n"+
-				"@魔物名稱\n"+
-				"/功能\n"+
-				
-				"\n若不知道該如何下指令，請輸入/help查詢。"
-			if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(text)).Do(); err != nil {
-				log.Print(err)
-			}
-		}
+		
 	}
 }
